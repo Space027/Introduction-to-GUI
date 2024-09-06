@@ -1,0 +1,37 @@
+from tkinter import *
+import calendar
+
+screen=Tk()
+screen.geometry('170x170')
+screen.title("Calender")
+
+def exit():
+    Tk.destroy(screen)
+
+def cale():
+    
+    cal=Tk()
+    cal.geometry('600x600')
+    cal.title('Calender')
+    year=int(entry.get())
+    calender=calendar.calendar(year)
+    label3=Label(cal,bg="white",text=calender,font=("Times New Roman",10))
+    label3.grid(row=5,column=1,padx=20)
+    cal.mainloop()
+
+
+label=Label(screen,bg="gray",text="CALENDER",font=("Times New Roman", 20))
+label2=Label(screen,bg="lime",text="Enter Year:")
+label.pack()
+label2.place(relx=0.5, rely=0.275,anchor=CENTER)
+
+entry=Entry(screen,bg="white")
+entry.place(relx=0.5,rely=0.45,anchor=CENTER)
+
+button=Button(screen,bg="yellow",text="Show Calender",command=cale)
+button2=Button(screen,bg="red",text="Exit", command=exit)
+button.place(relx=0.5,rely=0.6,anchor=CENTER)
+button2.place(relx=0.5,rely=0.8,anchor=CENTER)
+
+
+screen.mainloop()
