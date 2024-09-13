@@ -1,0 +1,30 @@
+from tkinter import *
+
+screen=Tk()
+screen.geometry('600x600')
+screen.configure(bg='navy')
+screen.title('yay :)')
+
+label=Label(screen,bg='yellow',text='HELLO')
+labely=Label(screen,bg='orange',text='HEY')
+labely.pack()
+label.pack(side='bottom')
+
+label.place(x=290,y=300)
+labely.place(x=540,y=123)
+
+label.grid(row=0,column=2)
+labely.grid(row=1,column=1)
+
+entry=Entry(screen,bg='lime')
+entry.place(x=40,y=300)
+
+def thing():
+    labely.configure(text='YOU CLICKED THE BUTTON.')
+
+button=Button(screen,bg='red',text='CLICK HERE!',command=thing)
+button.place(x=260,y=300)
+
+
+screen.mainloop()
+

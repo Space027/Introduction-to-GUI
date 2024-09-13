@@ -1,0 +1,30 @@
+from tkinter import *
+
+sc=Tk()
+sc.geometry('500x400')
+sc.title('Celsius ➡️ Farenheit')
+sc.configure(bg='light gray')
+
+def Far():
+    Fahrenheit=float(entry.get())
+    Fahrenheit=str(Fahrenheit*1.8+32)
+    label5.configure(text=Fahrenheit)
+    
+
+lab=Label(sc,bg='light gray',text='Celsius➜Farenheit',font=('Times New Roman bold',30))
+laby=Label(sc,bg='light gray',text='Enter temperature in °C',font=('Times New Roman bold',15))
+label=Label(sc,bg='light gray',text='Temperature in °F:',font=('Times New Roman bold',15))
+label5=Label(sc,bg='light gray',text='',font=('Times New Roman bold',15))
+lab.pack(pady=20)
+laby.pack()
+
+entry=Entry(sc)
+entry.pack(pady=5)
+
+but=Button(sc,bg='lime',text='Convert:',font=('Times New Roman bold',20),command=Far)
+but.place(rely=0.90,relx=0.5,anchor=S)
+
+label.pack(pady=30)
+label5.pack()
+
+sc.mainloop()
