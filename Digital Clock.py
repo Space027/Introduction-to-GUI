@@ -2,11 +2,12 @@ from tkinter import *
 import time
 
 sc=Tk()
-sc.geometry('400x50')
+sc.geometry('450x50')
 sc.title('Digital Clock')
 
 def tim():
-    string=time.strftime('%H:%M:%S:%t:%p')
+    now=time.time()
+    string=time.strftime('%H:%M:%S:%p:.%f','now')
     clo.configure(text=string)
     clo.after(1,tim)
 
