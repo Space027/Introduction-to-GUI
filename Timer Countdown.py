@@ -28,17 +28,18 @@ def start():
     totaltime=int(hr.get())*3600
     totaltime=totaltime+int(mi.get())*60
     totaltime=totaltime+int(se.get())
-    totaltime=totaltime-1
-    print(totaltime)
-    if totaltime==0:
-        time.sleep(90)
-    else:
-        time.sleep(1)
-        hr=totaltime//3600
-        mi=(totaltime%3600)//60
-        se=totaltime%60
-        sc.update()
-        start()
+    while totaltime>-1:
+        totaltime=totaltime-1
+        print(totaltime)
+        if totaltime==0:
+            time.sleep(90)
+        else:
+            time.sleep(1)
+            hr=totaltime//3600
+            mi=(totaltime%3600)//60
+            se=totaltime%60
+            sc.update()
+        
         
 
 bu1=Button(sc,bg='lime',text='SET TIME',command=start)
