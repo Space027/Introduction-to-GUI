@@ -1,5 +1,6 @@
 from tkinter import *
 import time
+import tkinter.messagebox
 
 sc=Tk()
 sc.geometry('190x170')
@@ -25,19 +26,25 @@ def start():
     global hr
     global mi
     global se
+    hrs.configure(state='disabled')
+    min.configure(state='disabled')
+    sec.configure(state='disabled')
     totaltime=int(hr.get())*3600
     totaltime=totaltime+int(mi.get())*60
     totaltime=totaltime+int(se.get())
     while totaltime>-1:
         totaltime=totaltime-1
         print(totaltime)
-        if totaltime==0:
-            time.sleep(90)
+        if totaltime<0:
+            tkinter.messagebox.showinfo('TIMER FINISHED','YOUR TIMER HAS COMPLETED')
         else:
             time.sleep(1)
-            hr=totaltime//3600
-            mi=(totaltime%3600)//60
-            se=totaltime%60
+            hours=totaltime//3600
+            minutes=(totaltime%3600)//60
+            seconds=totaltime%60
+            hr.set(hours)
+            mi.set(minutes)
+            se.set(seconds)
             sc.update()
         
         
