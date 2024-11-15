@@ -42,7 +42,12 @@ birent=Entry(sc)
 birent.grid(row=5,column=3)
 
 def openfile():
+    global dicton
     opefil=askopenfile(title='Open File')
+    if opefil!=None:
+        dicton=eval(opefil.read())
+        lboxadd()
+
 
 def adding():
     n=nament.get()
@@ -66,17 +71,40 @@ def show():
     print(tex)
     tkinter.messagebox.showinfo(text,'Address: '+tex[0]+'\n'+'Mobile: '+tex[1]+'\n'+'Email: '+tex[2]+'\n'+'Birthday: '+tex[3])
 
+def delete():
+    ind=lbox.curselection()
+    name=lbox.get(ind)
+    del dicton[name]
+    lbox.delete(ind)
+
+def edit():
+    indi=lbox.curselection()
+    ind=lbox.get(indi)
+    i=dicton[ind]
+    print(i)
+    nament.insert(0,ind)
+    addent.insert(0,i[0])
+    mobent.insert(0,i[1])
+    emaent.insert(0,i[2])
+    birent.insert(0,i[3])
+
+def save():
+    savfile=asksaveasfile(title='Save as:')
+    if savfile!=NONE:
+        print(dicton,file=savfile)
+        lbox.delete(0,END)
+
 op=Button(sc,text='Open', bg='yellow',command=openfile)
 op.grid(row=0,column=2,padx=20)
 sh=Button(sc,text='Show',bg='yellow',command=show)
 sh.grid(row=6,column=2,padx=20)
-ed=Button(sc,text='Edit',bg='yellow')
+ed=Button(sc,text='Edit',bg='yellow',command=edit)
 ed.grid(row=6,column=0)
-de=Button(sc,text='Delete',bg='yellow')
+de=Button(sc,text='Delete',bg='yellow',command=delete)
 de.grid(row=6,column=1)
 ad=Button(sc,text='Add/Update',bg='yellow',command=adding)
 ad.grid(row=6,column=3)
-sa=Button(sc,text='Save',width=40,bg='light green')
+sa=Button(sc,text='Save',width=40,bg='light green',command=save)
 sa.grid(row=7,column=0,columnspan=4,pady=15)
 
 sc.mainloop()
