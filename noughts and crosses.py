@@ -1,26 +1,43 @@
 from tkinter import *
 import random
+import tkinter.messagebox
 
 sc=Tk()
 sc.geometry('155x210')
 sc.title('Noughts and Crosses')
 
 l=['','','','','','','','','']
+win=[(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
 num=[0,1,2,3,4,5,6,7,8]
 
 def clicked(selected_button,index):
     if l[index]=='':
         selected_button.config(text='X')
         l[index]='X'
+        winner()
         num.remove(index)
+        if len(num)==0:
+            tkinter.messagebox.showinfo(':/','It is a draw...')
+            return
         ran=random.choice(num)
         if l[ran]=='':
             bu[ran].config(text='O')
             l[ran]='O'
             num.remove(ran)
+        winner()
+        
 
 l1=Label(sc,text='(X) User: ')
 l2=Label(sc,text='(O) Computer: ')
+
+def winner():
+    for i in win:
+        if l[i[0]]=='X'and l[i[1]]=='X'and l[i[2]]=='X':
+            tkinter.messagebox.showinfo(':)','Well Done! \nYou Win!')
+        if l[i[0]]=='O'and l[i[1]]=='O'and l[i[2]]=='O':
+            tkinter.messagebox.showinfo(':(','Bad Luck! \nYou Lose!')
+        
+        
 
 b1=Button(sc,width=6,height=3,command=lambda:clicked(b1,0))
 b2=Button(sc,width=6,height=3,command=lambda:clicked(b2,1))
@@ -46,5 +63,7 @@ b6.grid(row=3,column=2)
 b7.grid(row=4,column=0)
 b8.grid(row=4,column=1)
 b9.grid(row=4,column=2)
+
+print(num)
 
 sc.mainloop()
